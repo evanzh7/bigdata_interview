@@ -1,2 +1,2 @@
-[美团](meituan.md)
-[京东](jingdong.md)
+- [美团](meituan.md)
+- [京东](jingdong.md)
