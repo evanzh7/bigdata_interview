@@ -1,6 +1,5 @@
 记录it公司面试过程中的问题  
-- [美团](meituan.md)
-- [京东](jingdong.md)
+
 
 1. 单向链表存在环结构，如何快速判断存在环结构
 
@@ -34,16 +33,16 @@
 	数列规律，后面的数字是对前一个数字的描述，第二个数字11表示1个1，描述的是第一个数字。21表示2个1，1211表示1个2，1个1。
 11. HTTP HTTPS 前台数据加密传输后台
 
-1. 为何重写hashcode 和 equals方法
+12. 为何重写hashcode 和 equals方法
 
 	
-2. spring 事务如何实现
+13. spring 事务如何实现
 
 
-3. 分布式数据库如何保证一致性
+14. 分布式数据库如何保证一致性
 
 
-4. 异常种类有哪些
+15. 异常种类有哪些
 	
 	![java中常见异常如下图所示](img/exception_1.jpg)  
 	Throwable是所有异常的根，java.lang.Throwable
@@ -52,11 +51,8 @@
 	一般分为Checked异常和Runtime异常，所有RuntimeException类及其子类的实例被称为Runtime异常，不属于该范畴的异常则被称为CheckedException。
 
 
-5. spring事务遇到什么异常的时候不回回滚  
+16. spring事务遇到什么异常的时候不回回滚  
 	Spring的事务管理默认只对出现运行期异常(java.lang.RuntimeException及其子类)进行回滚。	
 
-
-
-
-[java 排序算法代码实现](http://www.cnblogs.com/wolf-sun/p/4312475.html)
+17. [java 排序算法代码实现](http://www.cnblogs.com/wolf-sun/p/4312475.html)
 
