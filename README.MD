@@ -138,6 +138,9 @@
 7. html提交如何保证安全
 8. https如何加密的，怎么做到安全的
 9. get提交到字节限制是协议本身限制的吗
+
+	http协议本身没有限制get提交字节长度，是url长度的限制。因为get提交到数据要放到url中。
+	
 10. 计算机网络分层，每层所用协议，协议所占端口
 11. osi七层模型 vs tcp/ip四层模型，两者之间有什么区别
 
@@ -169,7 +172,16 @@ func A （） {
 
 
 ##java web 框架
-1. sprig aop如何实现
+1. sprig aop的实现方式
+
+	1. 经典的基于代理的aop
+
+		Spring支持五种类型的通知：
+Before(前) 、After-returning(返回后) 、After-throwing(抛出后) 、Arround(周围) 、Introduction(引入) 
+	
+	2. @Aspect注解驱动的切面
+	3. 纯pojo切面
+	4. 注入式AspectJ切面
 2. spring 事务如何实现
 3. spring事务遇到什么异常的时候不回回滚  
 	
