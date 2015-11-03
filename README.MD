@@ -277,8 +277,8 @@ ln命令产生硬链接。
 
 data: 2015.11.01  
 招银网络科技  
-1. hibernate缺点
-2. javascript调优
-3. 异常处理机制
-4. spring事务机制
-5. java 垃圾处理机制
+1. hibernate缺点  
+2. javascript调优  
+3. 异常处理机制  
+4. spring事务机制  
+5. java 垃圾处理机制  
