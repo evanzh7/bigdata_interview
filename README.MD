@@ -17,14 +17,36 @@
 
 1. hashmap的底层实现，如何处理冲突，采用链表存储同一个hash值的元素，对于什么操作会有影响。
 
-2. 为何重写hashcode 和 equals方法
+	底层实现是数组，数组中的对象是Entry类对象。  
+	当存在冲突时，将具有相同hashcode的对象挂载在相同槽内，组成链。采用头插法，新插入对象放在链头，最先加入的对象放在链尾。  
+	**hashcode()**  
+	**indexFor()**  
+	**put()**  
+	**get()**  
+	**addEntry()**  
+	**loadfactor**  
+	loadfactor=元素个数/表长  
+	**hash算法**  
+
+	```java
+	int indexFor(int h, int length){
+		return h&(length - 1)	
+	}
+	```
+	**resize**  
+	数组默认大小是16，负载因子默认未0.75  
+
+2. 为何重写hashcode 和 equals方法  
+	重写equals方法必然重写hashcode方法，这是java规范。  
+	hashcode返回值是一个整数，代表两个对象是否相等。  
+
 
 3. 异常种类有哪些
 	
 	![java中常见异常如下图所示](img/exception_1.jpg)  
-	Throwable是所有异常的根，java.lang.Throwable
-	Error是错误，java.lang.Error
-	Exception是异常，java.lang.Exception
+	Throwable是所有异常的根，java.lang.Throwable  
+	Error是错误，java.lang.Error  
+	Exception是异常，java.lang.Exception  
 	一般分为Checked异常和Runtime异常，所有RuntimeException类及其子类的实例被称为Runtime异常，不属于该范畴的异常则被称为CheckedException。
 
 
@@ -38,8 +60,11 @@
 	[详细解释浅拷贝与深拷贝](http://www.cnblogs.com/shuaiwhu/archive/2010/12/14/2065088.html)  
 	当然我们还有一种深拷贝方法，就是将对象串行化。缺点耗时。
 
-6. 怎么判断一个对象该被回收
-7. hashmap 和 hashtable区别
+6. 怎么判断一个对象该被回收  
+	计数法  
+	根搜索法
+
+7. hashMap 和 hashtable区别
 8. hashtable原理
 9. hashtable是怎么实现线程安全的
 8. java的代理是怎么实现的
@@ -50,6 +75,19 @@
 12. 继承和组合区别
 13. lmbda表达式
 14. java 8 新特性
+15. java基础数据类型 
+	- 整形 byte	short	int		long  
+	- 浮点型	float	double  
+	- 逻辑型 boolean  
+	- 字符型	char  
+16. java中的数据存储  
+
+	- 寄存器：最快的存储区，编译器分配，程序无法控制
+	- 栈：存放基础数据类型的变量数据 和 对象的引用  
+	- 堆：new出来的对象存放位置
+	- 静态域：静态成员变量存放位置  
+	- 常量池：字符串变凉&基本数据类型变量 public static final  
+	- 非rRAM存储：硬盘等永久存储空间
 
 
 
@@ -79,22 +117,26 @@
 对于支持事物的InnoDB类型的标，影响速度的主要原因是AUTOCOMMIT默认设置是打开的，而且程序没有显式调用BEGIN 开始事务，导致每插入一条都自动Commit，严重影响了速度。可以在执行sql前调用begin，多条sql形成一个事物（即使autocommit打开也可以），将大大提高性能。
 
 	区别：
-	是否支持外键  innoDB
-	是否需要事务	innoDB
-	是否需要全文搜索  MyISAM
-	经常食用什么样的查询模式（是否带where）  
-	你的数据多大  innoDB
-	是否使用count(*)	MyISAM  
+	是否支持外键  innoDB支持  
+	是否需要事务	innoDB支持  
+	是否需要全文搜索  MyISAM支持  
+	经常使用什么样的查询模式（是否带where）    
+	你的数据多大  innoDB  
+	是否使用count(*)	MyISAM    
 	主键查询	innoDB  
 	insert	MyISAM  
 	update	innoDB  
 
 4. 分布式数据库如何保证一致性
 5. sql注入原理
-6. 数据库范式
+6. 数据库范式  
+	
+
 7. 乐观锁 vs 悲观锁
 8. 数据库锁机制
-9. 事务隔离机制
+9. 事务隔离机制  
+
+
 10. 数据库连接池原理
 11. 连接池使用什么数据结构实现，
 12. B+树和二叉树查找时间复杂度
@@ -129,7 +171,14 @@
 	HTTPS 对称加密 非对称加密 tls/ssl rsa
 	
 	
-3. session cookie。http是无协议的，客户第二次访问，服务器如何分辩此用户之前访问过服务器，用户的信息是如何保存的。
+3. session vs cookie  
+
+	http是无协议的，客户请求第二次到达服务器，服务器如何分辩此用户之前访问过服务器，用户的信息是如何保存的。  
+	cookie是在客户端保存客户的状态。包括（名字，值，过期时间，路径，域）  
+	session是在服务端保持状态。  
+	服务器程序为客户端的请求创建session时，服务器首先检查这个客户端的请求里是否包含sessionID。  
+	如果客户端禁用cookie，使用url重写、表单隐藏字段端方法传递session值。
+
 4. dns是基于tcp还是udp的  
   udp。在数据传输时间很短，以至于此前的连接过程成为整个流量主体的情况下，UDP也是一个好的选择。
 5. 使用过翻墙工具吗，goagent怎么实现的，shadowsocks怎么实现的  
@@ -176,7 +225,15 @@
  - 一段时间后，接收到这个文件结束符的应用进程将调用close关闭它的套接字。这导致它的TCP也发送一个FIN。  
  - 接收这个最终FIN的原发送端TCP（即执行主动关闭的那一端）确认这个FIN。[1]   
 既然每个方向都需要一个FIN和一个ACK，因此通常需要4个分节。  
-  ![alt图片](http://e.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=5e4b5e36eb50352aa56c2d5a322a9097/4610b912c8fcc3cea74598b29045d688d53f20ad.jpg)
+  ![alt图片](http://e.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=5e4b5e36eb50352aa56c2d5a322a9097/4610b912c8fcc3cea74598b29045d688d53f20ad.jpg)  
+  
+16. HTTP返回消息代码含义  
+
+	1xx：信息  
+	2xx：成功  
+	3xx：重定向  
+	4xx：客户端错误  
+	5xx：服务器错误
 
 ##操作系统  
 
@@ -205,7 +262,7 @@ func A （） {
 3. 对线程安全的理解
 
 
-##java web 框架
+##java web 
 1. sprig aop的实现方式
 
 	1. 经典的基于代理的aop
@@ -227,7 +284,11 @@ Before(前) 、After-returning(返回后) 、After-throwing(抛出后) 、Arroun
 7. aop 和 ioc介绍
 8. spring 3 和以前的版本有什么区别吗
 9. 注解相关问题：使用，原理
-10. 项目中怎么保存用户登录信息，如果cookie禁用了呢
+10. 项目中怎么保存用户登录信息，如果cookie禁用了呢  
+11. forward转发与 redirect重定向的区别  
+
+	转发：浏览器不知道，新页面继续处理同一个请求，表现在浏览器地址栏地址未改变。  
+	重定向：浏览器地址改变，第一个请求发出后，返回信息带着新的请求地址，
 
 	
 ##linux
@@ -266,19 +327,18 @@ ln命令产生硬链接。
 7. 内存溢出 和 内存泄漏
 8. 网站访问量巨大，如何提高效率
 9. html访问全过程
-
-
-##实际问题  
-
 1. 设计qq登录系统，10个服务器，8亿用户2亿用户是活跃的，怎么让登录系统既快又稳定  
 2. 用户不多时候，一个服务器对应一个数据库。用户多了的时候就是n个服务器对应一个数据库，这样会出现什么问题，怎么解决  
 3. 内存敲代码优化，我们都用stringbuffer来代替+号，来减少建立的对象。那么问题来了，除了这个你还用过什么碼代码技巧来节省内存  
 
 
-date: 2015.11.01  
-招银网络科技  
+
+###招银网络科技  
+###date: 2015.11.01  
 1. hibernate缺点  
 2. javascript调优  
 3. 异常处理机制  
 4. spring事务机制  
 5. java 垃圾处理机制  
+6. 项目登陆过程如何保证安全  
+7. 在线支付系统，和银行对接如何保证安全  
