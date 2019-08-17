@@ -202,7 +202,8 @@ BASE是指基本可用（Basically Available）、软状态（ Soft State）、�
 	```
 用CAS的好处在于不需要使用传统的锁机制来保证线程安全,CAS是一种基于忙等待的算法,依赖底层硬件的实现,相对于锁它没有线程切换和阻塞的额外消耗,可以支持较大的并行度。 CAS的一个重要缺点在于如果忙等待一直执行不成功(一直在死循环中),会对CPU造成较大的执行开销。   
 [不使用synchronized和lock，如何实现一个线程安全的单例？](http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120516&idx=1&sn=31c136d35c99dfad3538465e6f068691&chksm=f36bbc65c41c3573b1c04198c1da29e3aabc47d25de047da21e083df93992def6e5ffed6d463&scene=21#wechat_redirect)  
-[不使用synchronized和lock，如何实现一个线程安全的单例？（二）](http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120519&idx=1&sn=ea51a643553f12fbd56af4a2d835331b&chksm=f36bbc66c41c3570d3ae3413bbe02b92afb230bf609a405f9b2066ac397983865cef6ba4b93e&scene=21#wechat_redirect)
+[不使用synchronized和lock，如何实现一个线程安全的单例？（二）](http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120519&idx=1&sn=ea51a643553f12fbd56af4a2d835331b&chksm=f36bbc66c41c3570d3ae3413bbe02b92afb230bf609a405f9b2066ac397983865cef6ba4b93e&scene=21#wechat_redirect)  
+
 31. 解释下什么是Paxos算法吧
 
 	Paxos一种基于消息传递且具有高度容错特性的一致性算法。Paxos算法号称是最难理解的算法！！！
